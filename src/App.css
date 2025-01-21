@@ -1,5 +1,6 @@
 .container {
   width: 1200px;
+  height: 100%;
   margin: 2rem auto 1rem auto;
   padding: 2rem;
   background-color: white;
@@ -11,14 +12,16 @@
   justify-content: center;
 }
 
-Header {
+h1 {
   margin-bottom: 2rem;
 }
 
 Main {
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 Form {
@@ -51,4 +54,17 @@ Form > button {
 
 Form > button:hover {
   opacity: 80%;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  width: 60px;
+  height: 40px;
+  text-align: center;
+  border: 1px solid #000;
+  vertical-align: mid;
 }

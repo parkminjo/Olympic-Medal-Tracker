@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
-const Form = () => {
-  const [overallState, setOverallSate] = useState("");
-
+const Form = ({ medalList, setMedalList }) => {
   const [countryName, setCountryName] = useState("");
   const [goldMedal, setGoldMedal] = useState("");
   const [silverMedal, setSilverMedal] = useState("");
@@ -27,13 +25,32 @@ const Form = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    setOverallSate({
-      country: countryName,
-      goldMedal: goldMedal,
-      silverMedal: silverMedal,
-      bronzeMedal: bronzeMedal,
-    });
+    // 예외 상황 처리
+    if (
+      countryName === "" ||
+      goldMedal === "" ||
+      silverMedal === "" ||
+      bronzeMedal === ""
+    ) {
+      return alert("값을 모두 입력하세요.");
+    }
 
+    // medalList state 변환
+    setMedalList(
+      [
+        ...medalList,
+        {
+          countryName: countryName,
+          goldMedal: goldMedal,
+          silverMedal: silverMedal,
+          bronzeMedal: bronzeMedal,
+        },
+      ].sort((a, b) => {
+        return b.goldMedal - a.goldMedal;
+      })
+    );
+
+    // 입력값 초기화
     setCountryName("");
     setGoldMedal("");
     setSilverMedal("");
@@ -52,6 +69,7 @@ const Form = () => {
           placeholder="국가 입력"
           value={countryName}
           onChange={saveCountryName}
+          autoFocus
         />
       </div>
       <div className="gold-medal">
@@ -89,6 +107,7 @@ const Form = () => {
       </div>
 
       <button type="submit">국가 추가</button>
+      <button type="submit">업데이트</button>
     </form>
   );
 };
