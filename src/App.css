@@ -1,42 +1,54 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+.container {
+  width: 1200px;
+  margin: 2rem auto 1rem auto;
   padding: 2rem;
+  background-color: white;
+  box-shadow: 0 0 5px 1px #ced4da;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+Header {
+  margin-bottom: 2rem;
+}
+
+Main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+Form {
+  width: 100%;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: end;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+Form #country-input,
+#gold-medal-input,
+#silver-medal-input,
+#bronze-medal-input {
+  width: 200px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+Form > button {
+  border: none;
+  border-radius: 5px;
+  background-color: #ff9d23;
+  padding: 10px;
+  cursor: pointer;
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+Form > button:hover {
+  opacity: 80%;
 }
