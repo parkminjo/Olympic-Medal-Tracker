@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import uuid from "react-uuid";
 
-const MedalList = ({ medalList, setMedalList, titleList, setTitleList }) => {
+const MedalList = ({ medalList, setMedalList }) => {
   // 클릭한 나라 메달 리스트 삭제
   const deleteMedalList = (clickedCountry) => {
     const filteredList = medalList.filter((country) => {
       return country.countryName !== clickedCountry;
     });
     setMedalList(filteredList);
-
-    if (filteredList.length === 0) setTitleList([]);
   };
 
   // 메달 리스트 UI
@@ -17,9 +15,11 @@ const MedalList = ({ medalList, setMedalList, titleList, setTitleList }) => {
     <table>
       <thead>
         <tr>
-          {titleList.map((title) => {
-            return <th key={uuid()}>{title}</th>;
-          })}
+          <th>국가명</th>
+          <th>금메달</th>
+          <th>은메달</th>
+          <th>동메달</th>
+          <th>액션</th>
         </tr>
       </thead>
 

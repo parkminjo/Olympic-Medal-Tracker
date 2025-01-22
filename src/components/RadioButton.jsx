@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const RadioButton = ({ medalList, setMedalList }) => {
   // 금메달 기준
@@ -30,16 +30,23 @@ const RadioButton = ({ medalList, setMedalList }) => {
 
   // Radio 버튼 UI
   return (
-    <div>
-      <input type="radio" name="sorting" value={1} onClick={goldMedalLank} />{" "}
-      금메달 수 기준
+    <div className="radio-button">
       <input
         type="radio"
         name="sorting"
+        id="gold"
+        value={1}
+        onClick={goldMedalLank}
+      />{" "}
+      <label htmlFor="gold">금메달 수 기준</label>
+      <input
+        type="radio"
+        name="sorting"
+        id="total"
         value={2}
         onClick={totalMedalLank}
       />{" "}
-      총 메달 수 기준
+      <label htmlFor="total">총 메달 수 기준</label>
     </div>
   );
 };
