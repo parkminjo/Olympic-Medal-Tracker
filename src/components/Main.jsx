@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MedalForm from "./MedalForm";
 import MedalList from "./MedalList";
+import RadioButton from "./RadioButton";
 
 const Main = () => {
   const [medalList, setMedalList] = useState([]);
@@ -13,6 +14,11 @@ const Main = () => {
         setMedalList={setMedalList}
         setTitleList={setTitleList}
       ></MedalForm>
+
+      <RadioButton
+        medalList={medalList}
+        setMedalList={setMedalList}
+      ></RadioButton>
 
       <div className="medalList">
         <MedalList
