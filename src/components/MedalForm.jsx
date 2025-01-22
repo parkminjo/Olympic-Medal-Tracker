@@ -6,6 +6,14 @@ const MedalForm = ({ medalList, setMedalList }) => {
   const [silverMedal, setSilverMedal] = useState("");
   const [bronzeMedal, setBronzeMedal] = useState("");
 
+  // 입력값 초기화 함수
+  const reset = () => {
+    setNewCountry("");
+    setGoldMedal("");
+    setSilverMedal("");
+    setBronzeMedal("");
+  };
+
   // 나라 이름, 금, 은, 동메달 state 변환
   const saveNewCountry = (e) => {
     setNewCountry(e.target.value);
@@ -45,12 +53,6 @@ const MedalForm = ({ medalList, setMedalList }) => {
     });
     if (checkDuplication) {
       alert("이미 존재하는 나라입니다.");
-
-      // 입력값 초기화
-      setNewCountry("");
-      setGoldMedal("");
-      setSilverMedal("");
-      setBronzeMedal("");
       return;
     }
 
@@ -71,15 +73,22 @@ const MedalForm = ({ medalList, setMedalList }) => {
       })
     );
 
-    // 입력값 초기화
-    setNewCountry("");
-    setGoldMedal("");
-    setSilverMedal("");
-    setBronzeMedal("");
+    reset();
   };
 
   // 등록된 나라의 메달 리스트 업데이트 함수
   const updateHandler = (newCountry) => {
+    // 예외 상황: 등록되지 않은 나라를 수정하려고 할 때
+    const checkNull = medalList.some((country) => {
+      return country.countryName === newCountry;
+    });
+
+    if (checkNull === false) {
+      alert("등록되지 않은 나라입니다.");
+      reset();
+      return;
+    }
+
     const updateList = medalList.map((country) => {
       const { countryName } = country;
 
@@ -97,11 +106,7 @@ const MedalForm = ({ medalList, setMedalList }) => {
 
     setMedalList(updateList);
 
-    // 입력값 초기화
-    setNewCountry("");
-    setGoldMedal("");
-    setSilverMedal("");
-    setBronzeMedal("");
+    reset();
   };
 
   // 입력 UI
