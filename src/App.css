@@ -50,6 +50,7 @@ Form > button {
   background-color: #ff9d23;
   padding: 10px;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 Form > button:hover {

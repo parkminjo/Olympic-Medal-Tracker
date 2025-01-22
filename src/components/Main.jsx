@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Form from "./Form";
-import CountryList from "./CountryList";
+import MedalList from "./MedalList";
 
 const Main = () => {
   const [medalList, setMedalList] = useState([]);
@@ -8,10 +8,7 @@ const Main = () => {
   return (
     <main>
       <Form medalList={medalList} setMedalList={setMedalList}></Form>
-      <CountryList
-        medalList={medalList}
-        setMedalList={setMedalList}
-      ></CountryList>
+      <MedalList medalList={medalList} setMedalList={setMedalList}></MedalList>
     </main>
   );
 };
