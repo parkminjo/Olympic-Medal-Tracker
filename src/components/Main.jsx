@@ -14,7 +14,7 @@ const Main = () => {
     localStorage.setItem("medalList", JSON.stringify(medalList));
   }, [medalList]);
 
-  const check = medalList.length <= 0;
+  const check = medalList.length === 0;
 
   // Main UI
   return (
