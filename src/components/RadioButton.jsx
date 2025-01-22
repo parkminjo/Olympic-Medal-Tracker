@@ -1,7 +1,7 @@
 import React from "react";
 
 const RadioButton = ({ medalList, setMedalList }) => {
-  // 금메달 기준
+  // 금메달 기준 정렬
   const goldMedalLank = () => {
     setMedalList(
       [...medalList].sort((a, b) => {
@@ -10,7 +10,7 @@ const RadioButton = ({ medalList, setMedalList }) => {
     );
   };
 
-  // 총 메달 수 기준
+  // 총 메달 수 기준 정렬
   const totalMedalLank = () => {
     const totalMedalList = medalList.map((country) => {
       const { goldMedalCount, silverMedalCount, bronzeMedalCount } = country;

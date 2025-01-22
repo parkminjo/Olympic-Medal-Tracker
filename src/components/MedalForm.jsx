@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const MedalForm = ({ medalList, setMedalList }) => {
+  // 나라명, 금, 은, 동메달 state
   const [newCountry, setNewCountry] = useState("");
   const [goldMedal, setGoldMedal] = useState("");
   const [silverMedal, setSilverMedal] = useState("");
@@ -14,7 +15,7 @@ const MedalForm = ({ medalList, setMedalList }) => {
     setBronzeMedal("");
   };
 
-  // 나라 이름, 금, 은, 동메달 state 변환
+  // 나라명, 금, 은, 동메달 state 변환
   const saveNewCountry = (e) => {
     setNewCountry(e.target.value);
   };

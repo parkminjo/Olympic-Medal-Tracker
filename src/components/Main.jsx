@@ -4,6 +4,7 @@ import MedalList from "./MedalList";
 import RadioButton from "./RadioButton";
 
 const Main = () => {
+  // 메달 리스트 state 세팅
   const [medalList, setMedalList] = useState(
     JSON.parse(localStorage.getItem("medalList")) || []
   );
@@ -15,6 +16,7 @@ const Main = () => {
 
   const check = medalList.length <= 0;
 
+  // Main UI
   return (
     <main>
       <MedalForm medalList={medalList} setMedalList={setMedalList}></MedalForm>

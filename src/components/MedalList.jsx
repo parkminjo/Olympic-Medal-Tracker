@@ -2,7 +2,7 @@ import React from "react";
 import uuid from "react-uuid";
 
 const MedalList = ({ medalList, setMedalList }) => {
-  // 클릭한 나라 메달 리스트 삭제
+  // 클릭한 나라의 메달 리스트 삭제 함수
   const deleteMedalList = (clickedCountry) => {
     const filteredList = medalList.filter((country) => {
       return country.countryName !== clickedCountry;
