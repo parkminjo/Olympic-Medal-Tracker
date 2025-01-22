@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const MedalForm = ({ medalList, setMedalList }) => {
+const MedalForm = ({ medalList, setMedalList, setTitleList }) => {
   const [newCountry, setNewCountry] = useState("");
   const [goldMedal, setGoldMedal] = useState("");
   const [silverMedal, setSilverMedal] = useState("");
@@ -56,6 +56,10 @@ const MedalForm = ({ medalList, setMedalList }) => {
       return;
     }
 
+    // 메달 리스트 표 제목 state 변환
+    const title = ["국가명", "금메달", "은메달", "동메달", "액션"];
+    setTitleList(title);
+
     // medalList state 변환
     const newMedalList = [
       ...medalList,
@@ -69,7 +73,7 @@ const MedalForm = ({ medalList, setMedalList }) => {
 
     setMedalList(
       newMedalList.sort((a, b) => {
-        return b.goldMedal - a.goldMedal;
+        return b.goldMedalCount - a.goldMedalCount;
       })
     );
 
@@ -89,6 +93,7 @@ const MedalForm = ({ medalList, setMedalList }) => {
       return;
     }
 
+    // 등록된 나라의 메달 수 state 변환
     const updateList = medalList.map((country) => {
       const { countryName } = country;
 
@@ -104,8 +109,11 @@ const MedalForm = ({ medalList, setMedalList }) => {
       }
     });
 
-    setMedalList(updateList);
-
+    setMedalList(
+      updateList.sort((a, b) => {
+        return b.goldMedalCount - a.goldMedalCount;
+      })
+    );
     reset();
   };
 

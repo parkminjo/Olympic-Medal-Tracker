@@ -4,11 +4,24 @@ import MedalList from "./MedalList";
 
 const Main = () => {
   const [medalList, setMedalList] = useState([]);
+  const [titleList, setTitleList] = useState([]);
 
   return (
     <main>
-      <MedalForm medalList={medalList} setMedalList={setMedalList}></MedalForm>
-      <MedalList medalList={medalList} setMedalList={setMedalList}></MedalList>
+      <MedalForm
+        medalList={medalList}
+        setMedalList={setMedalList}
+        setTitleList={setTitleList}
+      ></MedalForm>
+
+      <div className="medalList">
+        <MedalList
+          medalList={medalList}
+          setMedalList={setMedalList}
+          titleList={titleList}
+          setTitleList={setTitleList}
+        ></MedalList>
+      </div>
     </main>
   );
 };

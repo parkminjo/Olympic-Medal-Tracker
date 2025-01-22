@@ -24,7 +24,7 @@ Main {
   justify-content: center;
 }
 
-Form {
+form {
   width: 100%;
   text-align: center;
   display: flex;
@@ -32,7 +32,7 @@ Form {
   align-items: end;
 }
 
-Form #country-input,
+form #country-input,
 #gold-medal-input,
 #silver-medal-input,
 #bronze-medal-input {
@@ -44,7 +44,7 @@ Form #country-input,
   margin-right: 10px;
 }
 
-Form > button {
+form > button {
   border: none;
   border-radius: 5px;
   background-color: #ff9d23;
@@ -53,19 +53,56 @@ Form > button {
   margin-left: 10px;
 }
 
-Form > button:hover {
+form > button:hover {
   opacity: 80%;
 }
 
+.medalList {
+  border-radius: 10px;
+}
+
 table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
   border-collapse: collapse;
+  border-style: hidden;
+}
+th {
+  background-color: #543a14;
+  color: white;
+}
+
+tbody tr:nth-child(2n) {
+  background-color: #e1e5e9;
+}
+
+tbody tr:nth-child(2n-1) {
+  background-color: #f8f9fa;
 }
 
 th,
 td {
-  width: 60px;
-  height: 40px;
+  width: 216px;
+  height: 45px;
   text-align: center;
-  border: 1px solid #000;
-  vertical-align: mid;
+  border: none;
+}
+
+tr:hover {
+  box-shadow: 0 0 0 2px #2a2c2e inset;
+}
+
+td > button {
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #fb4141;
+  padding: 8px;
+  cursor: pointer;
+}
+
+td > button:hover {
+  opacity: 80%;
 }
