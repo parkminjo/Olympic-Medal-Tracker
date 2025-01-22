@@ -24,14 +24,19 @@ const MedalList = ({ medalList, setMedalList }) => {
 
       <tbody>
         {medalList.map((country) => {
-          const { countryName, goldMedal, silverMedal, bronzeMedal } = country;
+          const {
+            countryName,
+            goldMedalCount,
+            silverMedalCount,
+            bronzeMedalCount,
+          } = country;
 
           return (
             <tr key={uuid()}>
               <td key={uuid()}>{countryName}</td>
-              <td key={uuid()}>{goldMedal}</td>
-              <td key={uuid()}>{silverMedal}</td>
-              <td key={uuid()}>{bronzeMedal}</td>
+              <td key={uuid()}>{goldMedalCount}</td>
+              <td key={uuid()}>{silverMedalCount}</td>
+              <td key={uuid()}>{bronzeMedalCount}</td>
               <td>
                 <button
                   key={uuid()}

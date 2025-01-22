@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Form = ({ medalList, setMedalList }) => {
+const MedalForm = ({ medalList, setMedalList }) => {
   const [newCountry, setNewCountry] = useState("");
   const [goldMedal, setGoldMedal] = useState("");
   const [silverMedal, setSilverMedal] = useState("");
@@ -45,6 +45,12 @@ const Form = ({ medalList, setMedalList }) => {
     });
     if (checkDuplication) {
       alert("이미 존재하는 나라입니다.");
+
+      // 입력값 초기화
+      setNewCountry("");
+      setGoldMedal("");
+      setSilverMedal("");
+      setBronzeMedal("");
       return;
     }
 
@@ -53,9 +59,9 @@ const Form = ({ medalList, setMedalList }) => {
       ...medalList,
       {
         countryName: newCountry,
-        goldMedal: goldMedal,
-        silverMedal: silverMedal,
-        bronzeMedal: bronzeMedal,
+        goldMedalCount: goldMedal,
+        silverMedalCount: silverMedal,
+        bronzeMedalCount: bronzeMedal,
       },
     ];
 
@@ -72,20 +78,33 @@ const Form = ({ medalList, setMedalList }) => {
     setBronzeMedal("");
   };
 
-  // 기존 나라의 메달 리스트 업데이트 함수
+  // 등록된 나라의 메달 리스트 업데이트 함수
   const updateHandler = (newCountry) => {
-    medalList.forEach((country) => {
-      const { countryName, goldMedal, silverMedal, bronzeMedal } = country;
-      if (countryName.includes(newCountry)) {
-        const updateList = [
-          ...medalList,
-          { countryName, goldMedal, silverMedal, bronzeMedal },
-        ];
-        console.log(updateList);
+    const updateList = medalList.map((country) => {
+      const { countryName } = country;
+
+      if (countryName === newCountry) {
+        return {
+          ...country,
+          goldMedalCount: goldMedal,
+          silverMedalCount: silverMedal,
+          bronzeMedalCount: bronzeMedal,
+        };
+      } else {
+        return country;
       }
     });
+
+    setMedalList(updateList);
+
+    // 입력값 초기화
+    setNewCountry("");
+    setGoldMedal("");
+    setSilverMedal("");
+    setBronzeMedal("");
   };
 
+  // 입력 UI
   return (
     <form onSubmit={submitHandler}>
       <div className="country">
@@ -143,4 +162,4 @@ const Form = ({ medalList, setMedalList }) => {
   );
 };
 
-export default Form;
+export default MedalForm;

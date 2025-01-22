@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Form from "./Form";
+import MedalForm from "./MedalForm";
 import MedalList from "./MedalList";
 
 const Main = () => {
@@ -7,7 +7,7 @@ const Main = () => {
 
   return (
     <main>
-      <Form medalList={medalList} setMedalList={setMedalList}></Form>
+      <MedalForm medalList={medalList} setMedalList={setMedalList}></MedalForm>
       <MedalList medalList={medalList} setMedalList={setMedalList}></MedalList>
     </main>
   );
