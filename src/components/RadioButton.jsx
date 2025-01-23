@@ -38,7 +38,9 @@ const RadioButton = ({ medalList, setMedalList }) => {
         value={1}
         onClick={goldMedalLank}
       />{" "}
-      <label htmlFor="gold">금메달순</label>
+      <label htmlFor="gold" className="gold-lank">
+        금메달순
+      </label>
       <input
         type="radio"
         name="sorting"
@@ -46,7 +48,9 @@ const RadioButton = ({ medalList, setMedalList }) => {
         value={2}
         onClick={totalMedalLank}
       />{" "}
-      <label htmlFor="total">합계순</label>
+      <label htmlFor="total" className="total-lank">
+        합계순
+      </label>
     </div>
   );
 };

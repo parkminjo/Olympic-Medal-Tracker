@@ -125,3 +125,8 @@ td > button:hover {
 .radio-button > input {
   margin-left: 1rem;
 }
+
+.gold-lank,
+.total-lank {
+  margin-left: 5px;
+}
