@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
 const MedalForm = ({ medalList, setMedalList }) => {
-  // 나라명, 금, 은, 동메달 state
+  /** 나라명, 금, 은, 동메달 state */
   const [newCountry, setNewCountry] = useState("");
   const [goldMedal, setGoldMedal] = useState("");
   const [silverMedal, setSilverMedal] = useState("");
   const [bronzeMedal, setBronzeMedal] = useState("");
 
-  // 입력값 초기화 함수
+  /** 입력값 초기화 함수 */
   const reset = () => {
     setNewCountry("");
     setGoldMedal("");
@@ -15,7 +15,7 @@ const MedalForm = ({ medalList, setMedalList }) => {
     setBronzeMedal("");
   };
 
-  // 나라명, 금, 은, 동메달 state 변환
+  /** 나라명, 금, 은, 동메달 state 업데이트 */
   const saveNewCountry = (e) => {
     setNewCountry(e.target.value);
   };
@@ -32,11 +32,14 @@ const MedalForm = ({ medalList, setMedalList }) => {
     setBronzeMedal(e.target.value);
   };
 
-  // form 관리 함수
+  /**
+   * form 관리 함수
+   * @param {*} e
+   */
   const submitHandler = (e) => {
     e.preventDefault();
 
-    // 예외 상황 처리 1: 입력값이 없을 때
+    /** 예외 상황 처리 1: 입력값이 없을 때 */
     if (
       newCountry === "" ||
       goldMedal === "" ||
@@ -47,7 +50,7 @@ const MedalForm = ({ medalList, setMedalList }) => {
       return;
     }
 
-    // 예외 상황 처리 2: 이미 추가된 나라일 때
+    /** 예외 상황 처리 2: 이미 추가된 나라일 때 */
     const checkDuplication = medalList.some((country) => {
       const { countryName } = country;
       return countryName.includes(newCountry);
@@ -57,7 +60,7 @@ const MedalForm = ({ medalList, setMedalList }) => {
       return;
     }
 
-    // medalList state 변환
+    /** medalList state 업데이트 */
     const newMedalList = [
       ...medalList,
       {
@@ -78,9 +81,13 @@ const MedalForm = ({ medalList, setMedalList }) => {
     reset();
   };
 
-  // 등록된 나라의 메달 리스트 업데이트 함수
+  /**
+   * 등록된 나라의 메달 리스트 수정 함수
+   * @param {*} newCountry
+   * @returns
+   */
   const updateHandler = (newCountry) => {
-    // 예외 상황: 등록되지 않은 나라를 수정하려고 할 때
+    /** 예외 상황: 등록되지 않은 나라를 수정하려고 할 때 */
     const checkNull = medalList.some((country) => {
       return country.countryName === newCountry;
     });
@@ -90,7 +97,7 @@ const MedalForm = ({ medalList, setMedalList }) => {
       return;
     }
 
-    // 등록된 나라의 메달 수 state 변환
+    /** 등록된 나라의 메달 수 state 업데이트 */
     const updateList = medalList.map((country) => {
       const { countryName } = country;
 
@@ -116,7 +123,7 @@ const MedalForm = ({ medalList, setMedalList }) => {
     reset();
   };
 
-  // 입력 UI
+  /** 입력 UI */
   return (
     <form onSubmit={submitHandler}>
       <div className="country">

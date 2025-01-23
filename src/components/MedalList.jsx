@@ -2,7 +2,10 @@ import React from "react";
 import uuid from "react-uuid";
 
 const MedalList = ({ medalList, setMedalList }) => {
-  // 클릭한 나라의 메달 리스트 삭제 함수
+  /**
+   * 메달 리스트 삭제 함수
+   * @param {*} clickedCountry
+   */
   const deleteMedalList = (clickedCountry) => {
     const filteredList = medalList.filter((country) => {
       return country.countryName !== clickedCountry;
@@ -10,7 +13,7 @@ const MedalList = ({ medalList, setMedalList }) => {
     setMedalList(filteredList);
   };
 
-  // 메달 리스트 UI
+  /** 메달 리스트 UI */
   return (
     <table>
       <thead>
