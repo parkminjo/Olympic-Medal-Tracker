@@ -65,6 +65,7 @@ const MedalForm = ({ medalList, setMedalList }) => {
         goldMedalCount: goldMedal,
         silverMedalCount: silverMedal,
         bronzeMedalCount: bronzeMedal,
+        total: Number(goldMedal) + Number(silverMedal) + Number(bronzeMedal),
       },
     ];
 
@@ -99,6 +100,7 @@ const MedalForm = ({ medalList, setMedalList }) => {
           goldMedalCount: goldMedal,
           silverMedalCount: silverMedal,
           bronzeMedalCount: bronzeMedal,
+          total: Number(goldMedal) + Number(silverMedal) + Number(bronzeMedal),
         };
       } else {
         return country;

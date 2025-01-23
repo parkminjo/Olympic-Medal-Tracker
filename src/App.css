@@ -86,16 +86,16 @@ tbody tr:nth-child(2n-1) {
   background-color: #f8f9fa;
 }
 
+tr:hover {
+  box-shadow: 0 0 0 2px #2a2c2e inset;
+}
+
 th,
 td {
   width: 220px;
   height: 45px;
   text-align: center;
   border: none;
-}
-
-tr:hover {
-  box-shadow: 0 0 0 2px #2a2c2e inset;
 }
 
 td > button {
@@ -109,6 +109,10 @@ td > button {
 
 td > button:hover {
   opacity: 80%;
+}
+
+.total {
+  color: #858e96;
 }
 
 .radio-button {
