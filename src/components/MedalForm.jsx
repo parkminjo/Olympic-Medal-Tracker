@@ -21,15 +21,15 @@ const MedalForm = ({ medalList, setMedalList }) => {
   };
 
   const saveGoldMedal = (e) => {
-    setGoldMedal(e.target.value);
+    setGoldMedal(+e.target.value);
   };
 
   const saveSilverMedal = (e) => {
-    setSilverMedal(e.target.value);
+    setSilverMedal(+e.target.value);
   };
 
   const saveBronzeMedal = (e) => {
-    setBronzeMedal(e.target.value);
+    setBronzeMedal(+e.target.value);
   };
 
   /**
@@ -68,7 +68,7 @@ const MedalForm = ({ medalList, setMedalList }) => {
         goldMedalCount: goldMedal,
         silverMedalCount: silverMedal,
         bronzeMedalCount: bronzeMedal,
-        total: Number(goldMedal) + Number(silverMedal) + Number(bronzeMedal),
+        total: goldMedal + silverMedal + bronzeMedal,
       },
     ];
 
@@ -107,7 +107,7 @@ const MedalForm = ({ medalList, setMedalList }) => {
           goldMedalCount: goldMedal,
           silverMedalCount: silverMedal,
           bronzeMedalCount: bronzeMedal,
-          total: Number(goldMedal) + Number(silverMedal) + Number(bronzeMedal),
+          total: goldMedal + silverMedal + bronzeMedal,
         };
       } else {
         return country;
