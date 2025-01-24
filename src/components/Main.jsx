@@ -19,7 +19,7 @@ const Main = () => {
 
   /**
    * 메달 리스트를 정렬하는 함수
-   * @returns 정렬된 메달 리스
+   * @returns 정렬된 메달 리스트
    */
   const getSortedMedals = () => {
     if (sortType === "gold") {
