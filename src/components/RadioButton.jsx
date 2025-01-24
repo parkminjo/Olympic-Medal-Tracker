@@ -14,10 +14,7 @@ const RadioButton = ({ medalList, setMedalList }) => {
   const totalMedalLank = () => {
     const totalMedalList = medalList.map((country) => {
       const { goldMedalCount, silverMedalCount, bronzeMedalCount } = country;
-      const total =
-        Number(goldMedalCount) +
-        Number(silverMedalCount) +
-        Number(bronzeMedalCount);
+      const total = goldMedalCount + silverMedalCount + bronzeMedalCount;
       return { ...country, totalMedal: total };
     });
 

@@ -88,11 +88,11 @@ const MedalForm = ({ medalList, setMedalList }) => {
    */
   const updateHandler = (newCountry) => {
     /** 예외 상황: 등록되지 않은 나라를 수정하려고 할 때 */
-    const checkNull = medalList.some((country) => {
+    const checkCountry = medalList.some((country) => {
       return country.countryName === newCountry;
     });
 
-    if (checkNull === false) {
+    if (checkCountry === false) {
       alert("등록되지 않은 나라입니다.");
       return;
     }
