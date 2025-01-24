@@ -36,21 +36,10 @@ const MedalForm = ({ medalList, setMedalList }) => {
    * form 관리 함수
    * @param {*} e
    */
-  const submitHandler = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    /** 예외 상황 처리 1: 입력값이 없을 때 */
-    if (
-      newCountry === "" ||
-      goldMedal === "" ||
-      silverMedal === "" ||
-      bronzeMedal === ""
-    ) {
-      alert("값을 모두 입력하세요.");
-      return;
-    }
-
-    /** 예외 상황 처리 2: 이미 추가된 나라일 때 */
+    /** 예외 상황 처리: 이미 추가된 나라일 때 */
     const checkDuplication = medalList.some((country) => {
       const { countryName } = country;
       return countryName.includes(newCountry);
@@ -86,7 +75,7 @@ const MedalForm = ({ medalList, setMedalList }) => {
    * @param {*} newCountry
    * @returns
    */
-  const updateHandler = (newCountry) => {
+  const handleUpdate = (newCountry) => {
     /** 예외 상황: 등록되지 않은 나라를 수정하려고 할 때 */
     const checkCountry = medalList.some((country) => {
       return country.countryName === newCountry;
@@ -125,7 +114,7 @@ const MedalForm = ({ medalList, setMedalList }) => {
 
   /** 입력 UI */
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={handleSubmit}>
       <div className="country">
         <div>
           <label htmlFor="country-input">국가명</label>
@@ -137,6 +126,7 @@ const MedalForm = ({ medalList, setMedalList }) => {
           value={newCountry}
           onChange={saveNewCountry}
           autoFocus
+          required
         />
       </div>
       <div className="gold-medal">
@@ -148,6 +138,9 @@ const MedalForm = ({ medalList, setMedalList }) => {
           id="gold-medal-input"
           value={goldMedal}
           onChange={saveGoldMedal}
+          required
+          min={0}
+          max={99}
         />
       </div>
       <div className="silver-medal">
@@ -159,6 +152,9 @@ const MedalForm = ({ medalList, setMedalList }) => {
           id="silver-medal-input"
           value={silverMedal}
           onChange={saveSilverMedal}
+          required
+          min={0}
+          max={99}
         />
       </div>
       <div className="bronze-medal">
@@ -170,11 +166,14 @@ const MedalForm = ({ medalList, setMedalList }) => {
           id="bronze-medal-input"
           value={bronzeMedal}
           onChange={saveBronzeMedal}
+          required
+          min={0}
+          max={99}
         />
       </div>
 
       <button type="submit">국가 추가</button>
-      <button type="button" onClick={() => updateHandler(newCountry)}>
+      <button type="button" onClick={() => handleUpdate(newCountry)}>
         업데이트
       </button>
     </form>

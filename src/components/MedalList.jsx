@@ -6,7 +6,7 @@ const MedalList = ({ medalList, setMedalList }) => {
    * 메달 리스트 삭제 함수
    * @param {*} clickedCountry
    */
-  const deleteMedalList = (clickedCountry) => {
+  const handleDelete = (clickedCountry) => {
     const filteredList = medalList.filter((country) => {
       return country.countryName !== clickedCountry;
     });
@@ -49,10 +49,7 @@ const MedalList = ({ medalList, setMedalList }) => {
                 {total}
               </td>
               <td>
-                <button
-                  key={uuid()}
-                  onClick={() => deleteMedalList(countryName)}
-                >
+                <button key={uuid()} onClick={() => handleDelete(countryName)}>
                   삭제
                 </button>
               </td>

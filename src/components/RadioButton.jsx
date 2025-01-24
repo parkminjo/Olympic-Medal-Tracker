@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 
 const RadioButton = ({ medalList, setMedalList }) => {
   /** 금메달 기준 정렬 */
