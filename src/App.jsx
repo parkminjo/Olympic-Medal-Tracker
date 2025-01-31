@@ -4,6 +4,7 @@ import MedalList from "./components/MedalList";
 import RadioButton from "./components/RadioButton";
 import styled from "styled-components";
 import { useState } from "react";
+import { useEffect } from "react";
 
 /** styled components */
 const Container = styled.div`
@@ -27,7 +28,9 @@ const H1 = styled.h1`
 /** App */
 const App = () => {
   /** 나라별 메달 현황 state */
-  const [medalList, setMedalList] = useState([]);
+  const [medalList, setMedalList] = useState(
+    JSON.parse(localStorage.getItem("medalList")) || []
+  );
 
   /** 정렬 기준 state */
   const [sortType, setSortType] = useState("goldSort");
@@ -46,6 +49,11 @@ const App = () => {
   };
 
   const sortedList = getSortedList();
+
+  /** 로컬 스토리지 저장 */
+  useEffect(() => {
+    localStorage.setItem("medalList", JSON.stringify(medalList));
+  }, [medalList]);
 
   /** UI */
   return (
