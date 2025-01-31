@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import MedalForm from "./components/MedalForm";
 import MedalList from "./components/MedalList";
 import RadioButton from "./components/RadioButton";
@@ -27,14 +26,34 @@ const H1 = styled.h1`
 
 /** App */
 const App = () => {
+  /** 나라별 메달 현황 state */
   const [medalList, setMedalList] = useState([]);
 
+  /** 정렬 기준 state */
+  const [sortType, setSortType] = useState("goldSort");
+
+  /** 금메달순, 합계순 정렬 함수 */
+  const getSortedList = () => {
+    if (sortType === "goldSort") {
+      const sortedList = [...medalList].sort((a, b) => b.gold - a.gold);
+      return sortedList;
+    } else {
+      const sortedList = [...medalList].sort(
+        (a, b) => b.gold + b.silver + b.bronze - (a.gold + a.silver + a.bronze)
+      );
+      return sortedList;
+    }
+  };
+
+  const sortedList = getSortedList();
+
+  /** UI */
   return (
     <Container>
       <H1>2024 파리 올림픽 메달 집계🏅</H1>
       <MedalForm medalList={medalList} setMedalList={setMedalList} />
-      <RadioButton />
-      <MedalList medalList={medalList} setMedalList={setMedalList} />
+      <RadioButton sortType={sortType} setSortType={setSortType} />
+      <MedalList medalList={sortedList} setMedalList={setMedalList} />
     </Container>
   );
 };

@@ -62,6 +62,9 @@ const MedalForm = ({ medalList, setMedalList }) => {
     });
   };
 
+  /** 메달 합계 */
+  const total = countryMedal.gold + countryMedal.silver + countryMedal.bronze;
+
   /** handleSubmit 함수 */
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -74,13 +77,24 @@ const MedalForm = ({ medalList, setMedalList }) => {
       ...prev,
       {
         ...countryMedal,
-        total: countryMedal.gold + countryMedal.silver + countryMedal.bronze,
+        total,
       },
     ]);
 
     reset();
   };
 
+  /** handleUpdate 함수 */
+  const handleUpdate = (country) => {
+    if (medalList.some((medal) => medal.country !== country)) {
+      alert("등록되지 않은 나라입니다. 입력하신 나라를 추가해주세요!");
+      return;
+    }
+
+    setMedalList((prev) => [...prev, { ...countryMedal, total }]);
+  };
+
+  /** UI */
   return (
     <div>
       <FormContainer onSubmit={handleSubmit}>
@@ -128,7 +142,9 @@ const MedalForm = ({ medalList, setMedalList }) => {
           />
         </label>
         <Button type="submit">추가</Button>
-        <Button type="button">업데이트</Button>
+        <Button type="button" onClick={() => handleUpdate(country)}>
+          업데이트
+        </Button>
       </FormContainer>
     </div>
   );
