@@ -85,13 +85,33 @@ const MedalForm = ({ medalList, setMedalList }) => {
   };
 
   /** handleUpdate 함수 */
-  const handleUpdate = (country) => {
-    if (medalList.some((medal) => medal.country !== country)) {
-      alert("등록되지 않은 나라입니다. 입력하신 나라를 추가해주세요!");
+  const handleUpdate = () => {
+    const checkCountry = medalList.find(
+      (medal) => medal.country === countryMedal.country
+    );
+    if (!checkCountry) {
+      alert("등록되지 않은 나라입니다. 나라를 새롭게 추가해주세요!");
       return;
     }
 
-    setMedalList((prev) => [...prev, { ...countryMedal, total }]);
+    setMedalList((prev) =>
+      [...prev].map((medal) => {
+        const { country } = medal;
+        if (medal.country === countryMedal.country) {
+          return {
+            country,
+            gold: countryMedal.gold,
+            silver: countryMedal.silver,
+            bronze: countryMedal.bronze,
+            total,
+          };
+        } else {
+          return medal;
+        }
+      })
+    );
+
+    reset();
   };
 
   /** UI */
@@ -142,7 +162,7 @@ const MedalForm = ({ medalList, setMedalList }) => {
           />
         </label>
         <Button type="submit">추가</Button>
-        <Button type="button" onClick={() => handleUpdate(country)}>
+        <Button type="button" onClick={handleUpdate}>
           업데이트
         </Button>
       </FormContainer>
