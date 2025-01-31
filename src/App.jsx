@@ -25,6 +25,10 @@ const H1 = styled.h1`
   margin-bottom: 2rem;
 `;
 
+const P = styled.p`
+  margin-top: 2rem;
+`;
+
 /** App */
 const App = () => {
   /** 나라별 메달 현황 state */
@@ -55,13 +59,21 @@ const App = () => {
     localStorage.setItem("medalList", JSON.stringify(medalList));
   }, [medalList]);
 
+  /** 등록된 메달 리스트 여부 확인 */
+  const checkMedalList = medalList.length === 0;
+
   /** UI */
   return (
     <Container>
       <H1>2024 파리 올림픽 메달 집계🏅</H1>
       <MedalForm medalList={medalList} setMedalList={setMedalList} />
-      <RadioButton sortType={sortType} setSortType={setSortType} />
-      <MedalList medalList={sortedList} setMedalList={setMedalList} />
+      {checkMedalList && <P>메달을 추적하세요!</P>}
+      {checkMedalList || (
+        <>
+          <RadioButton sortType={sortType} setSortType={setSortType} />
+          <MedalList medalList={sortedList} setMedalList={setMedalList} />
+        </>
+      )}
     </Container>
   );
 };
