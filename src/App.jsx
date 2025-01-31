@@ -6,6 +6,7 @@ import RadioButton from "./components/RadioButton";
 import styled from "styled-components";
 import { useState } from "react";
 
+/** styled components */
 const Container = styled.div`
   width: 1100px;
   height: 100%;
@@ -20,12 +21,17 @@ const Container = styled.div`
   justify-content: center;
 `;
 
+const H1 = styled.h1`
+  margin-bottom: 2rem;
+`;
+
+/** App */
 const App = () => {
   const [medalList, setMedalList] = useState([]);
 
   return (
     <Container>
-      <h1>2024 파리 올림픽 메달 집계🏅</h1>
+      <H1>2024 파리 올림픽 메달 집계🏅</H1>
       <MedalForm medalList={medalList} setMedalList={setMedalList} />
       <RadioButton />
       <MedalList medalList={medalList} setMedalList={setMedalList} />

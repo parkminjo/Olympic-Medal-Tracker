@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 
+/** styled components */
 const FormContainer = styled.form`
   width: 100%;
   text-align: center;
@@ -32,6 +33,7 @@ const Button = styled.button`
   }
 `;
 
+/** MedalForm */
 const MedalForm = ({ medalList, setMedalList }) => {
   /** 메달 입력 state */
   const [countryMedal, setCountryMedal] = useState({
