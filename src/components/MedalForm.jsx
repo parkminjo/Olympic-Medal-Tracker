@@ -1,182 +1,134 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
+import styled from "styled-components";
+
+const FormContainer = styled.form`
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+`;
+
+const Input = styled.input`
+  width: 150px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+`;
+
+const Button = styled.button`
+  border: none;
+  border-radius: 5px;
+  background-color: #ff9d23;
+  padding: 10px;
+  cursor: pointer;
+  margin-left: 10px;
+
+  &:hover {
+    opacity: 80%;
+  }
+`;
 
 const MedalForm = ({ medalList, setMedalList }) => {
-  /** 나라명, 금, 은, 동메달 state */
-  const [newCountry, setNewCountry] = useState("");
-  const [goldMedal, setGoldMedal] = useState("");
-  const [silverMedal, setSilverMedal] = useState("");
-  const [bronzeMedal, setBronzeMedal] = useState("");
+  /** 메달 입력 state */
+  const [countryMedal, setCountryMedal] = useState({
+    country: "",
+    gold: 0,
+    silver: 0,
+    bronze: 0,
+  });
 
-  /** 입력값 초기화 함수 */
+  /** onChange 핸들러 */
+  const handleChange = (e) => {
+    const { value, id } = e.target;
+    setCountryMedal((prev) => ({
+      ...prev,
+      [id]: id === "country" ? value : +value,
+    }));
+  };
+
+  /** 입력값 초기화 */
   const reset = () => {
-    setNewCountry("");
-    setGoldMedal("");
-    setSilverMedal("");
-    setBronzeMedal("");
+    setCountryMedal({
+      country: "",
+      gold: 0,
+      silver: 0,
+      bronze: 0,
+    });
   };
 
-  /** 나라명, 금, 은, 동메달 state 업데이트 */
-  const saveNewCountry = (e) => {
-    setNewCountry(e.target.value);
-  };
-
-  const saveGoldMedal = (e) => {
-    setGoldMedal(+e.target.value);
-  };
-
-  const saveSilverMedal = (e) => {
-    setSilverMedal(+e.target.value);
-  };
-
-  const saveBronzeMedal = (e) => {
-    setBronzeMedal(+e.target.value);
-  };
-
-  /**
-   * form 관리 함수
-   * @param {*} e
-   */
+  /** handleSubmit 함수 */
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    /** 예외 상황 처리: 이미 추가된 나라일 때 */
-    const checkDuplication = medalList.some((country) => {
-      const { countryName } = country;
-      return countryName.includes(newCountry);
-    });
-    if (checkDuplication) {
-      alert("이미 존재하는 나라입니다.");
+    if (medalList.some((medal) => medal.country === countryMedal.country)) {
+      alert("이미 등록된 나라입니다.");
       return;
     }
 
-    /** medalList state 업데이트 */
-    const newMedalList = [
-      ...medalList,
+    setMedalList((prev) => [
+      ...prev,
       {
-        countryName: newCountry,
-        goldMedalCount: goldMedal,
-        silverMedalCount: silverMedal,
-        bronzeMedalCount: bronzeMedal,
-        total: goldMedal + silverMedal + bronzeMedal,
+        ...countryMedal,
+        total: countryMedal.gold + countryMedal.silver + countryMedal.bronze,
       },
-    ];
-
-    setMedalList(
-      newMedalList.sort((a, b) => {
-        return b.goldMedalCount - a.goldMedalCount;
-      })
-    );
+    ]);
 
     reset();
   };
 
-  /**
-   * 등록된 나라의 메달 리스트 수정 함수
-   * @param {*} newCountry
-   * @returns
-   */
-  const handleUpdate = (newCountry) => {
-    /** 예외 상황: 등록되지 않은 나라를 수정하려고 할 때 */
-    const checkCountry = medalList.some((country) => {
-      return country.countryName === newCountry;
-    });
-
-    if (checkCountry === false) {
-      alert("등록되지 않은 나라입니다.");
-      return;
-    }
-
-    /** 등록된 나라의 메달 수 state 업데이트 */
-    const updateList = medalList.map((country) => {
-      const { countryName } = country;
-
-      if (countryName === newCountry) {
-        return {
-          ...country,
-          goldMedalCount: goldMedal,
-          silverMedalCount: silverMedal,
-          bronzeMedalCount: bronzeMedal,
-          total: goldMedal + silverMedal + bronzeMedal,
-        };
-      } else {
-        return country;
-      }
-    });
-
-    setMedalList(
-      updateList.sort((a, b) => {
-        return b.goldMedalCount - a.goldMedalCount;
-      })
-    );
-
-    reset();
-  };
-
-  /** 입력 UI */
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="country">
-        <div>
-          <label htmlFor="country-input">국가명</label>
-        </div>
-        <input
-          type="text"
-          id="country-input"
-          placeholder="국가 입력"
-          value={newCountry}
-          onChange={saveNewCountry}
-          autoFocus
-          required
-        />
-      </div>
-      <div className="gold-medal">
-        <div>
-          <label htmlFor="gold-medal-input">금메달</label>
-        </div>
-        <input
-          type="number"
-          id="gold-medal-input"
-          value={goldMedal}
-          onChange={saveGoldMedal}
-          required
-          min={0}
-          max={99}
-        />
-      </div>
-      <div className="silver-medal">
-        <div>
-          <label htmlFor="silver-medal-input">은메달</label>
-        </div>
-        <input
-          type="number"
-          id="silver-medal-input"
-          value={silverMedal}
-          onChange={saveSilverMedal}
-          required
-          min={0}
-          max={99}
-        />
-      </div>
-      <div className="bronze-medal">
-        <div>
-          <label htmlFor="bronze-medal-input">동메달</label>
-        </div>
-        <input
-          type="number"
-          id="bronze-medal-input"
-          value={bronzeMedal}
-          onChange={saveBronzeMedal}
-          required
-          min={0}
-          max={99}
-        />
-      </div>
-
-      <button type="submit">국가 추가</button>
-      <button type="button" onClick={() => handleUpdate(newCountry)}>
-        업데이트
-      </button>
-    </form>
+    <div>
+      <FormContainer onSubmit={handleSubmit}>
+        <label htmlFor="country">
+          국가명
+          <Input
+            type="text"
+            id="country"
+            required
+            value={countryMedal.country}
+            onChange={handleChange}
+          />
+        </label>
+        <label htmlFor="gold">
+          금메달
+          <Input
+            type="number"
+            id="gold"
+            required
+            value={countryMedal.gold}
+            min={0}
+            onChange={handleChange}
+          />
+        </label>
+        <label htmlFor="silver">
+          은메달
+          <Input
+            type="number"
+            id="silver"
+            required
+            value={countryMedal.silver}
+            min={0}
+            onChange={handleChange}
+          />
+        </label>
+        <label htmlFor="bronze">
+          동메달
+          <Input
+            type="number"
+            required
+            id="bronze"
+            value={countryMedal.bronze}
+            min={0}
+            onChange={handleChange}
+          />
+        </label>
+        <Button type="submit">추가</Button>
+        <Button type="button">업데이트</Button>
+      </FormContainer>
+    </div>
   );
 };
 

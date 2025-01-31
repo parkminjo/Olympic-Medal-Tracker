@@ -1,17 +1,3 @@
-.container {
-  width: 1100px;
-  height: 100%;
-  margin: 2rem auto 1rem auto;
-  padding: 3rem;
-  background-color: white;
-  box-shadow: 0 0 5px 1px #ced4da;
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 h1 {
   margin-bottom: 2rem;
 }
@@ -22,39 +8,6 @@ Main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-form {
-  width: 100%;
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-}
-
-form #country-input,
-#gold-medal-input,
-#silver-medal-input,
-#bronze-medal-input {
-  width: 200px;
-  border: 1px solid #ced4da;
-  border-radius: 5px;
-  padding: 10px;
-  margin-top: 10px;
-  margin-right: 10px;
-}
-
-form > button {
-  border: none;
-  border-radius: 5px;
-  background-color: #ff9d23;
-  padding: 10px;
-  cursor: pointer;
-  margin-left: 10px;
-}
-
-form > button:hover {
-  opacity: 80%;
 }
 
 p {
