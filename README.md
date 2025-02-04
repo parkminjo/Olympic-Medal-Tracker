@@ -44,8 +44,11 @@ CRUD 기능을 구현하여 사용자는 메달 데이터를 등록, 수정 삭�
 사용자가 등록한 데이터를 유지하기 위하여 local storage를 이용하였습니다.
 
 ---
-
-[트러블 슈팅 정리](https://home1204.tistory.com/category/TroubleShooting)
+## 🔥 트러블 슈팅
+[사용자가 입력한 모든 값을 배열에 어떻게 넣을까?](https://home1204.tistory.com/69)
+[child in a list should have a unique "key" prop!!](https://home1204.tistory.com/70)
+[return했는데도 왜 메달 리스트를 보여주는걸까](https://home1204.tistory.com/71)
+[조건에 따라 컴포넌트 보여주기](https://home1204.tistory.com/73)
 
 ---
 ## 🌟 느낀점
