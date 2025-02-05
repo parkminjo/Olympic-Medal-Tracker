@@ -61,3 +61,15 @@ React를 배운지 이틀 밖에 안된 상태에서 바로 프로젝트를 진�
 
 ---
 # 🧬 프로젝트 구조
+```
+📦src
+ ┣ 📂assets
+ ┃ ┗ 📜react.svg
+ ┣ 📂components
+ ┃ ┣ 📜MedalForm.jsx
+ ┃ ┣ 📜MedalList.jsx
+ ┃ ┗ 📜RadioButton.jsx
+ ┣ 📜App.jsx
+ ┣ 📜index.css
+ ┗ 📜main.jsx
+```
