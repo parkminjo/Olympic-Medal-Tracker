@@ -6,6 +6,9 @@
 ### ⚙️ 기술 스택
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 
+### 🖥️ 데모
+[올림픽 메달 집계](https://olympic-medal-tracker-orcin.vercel.app/)
+
 ---
 
 # 📢 프로젝트 소개
